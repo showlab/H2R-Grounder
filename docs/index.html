@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>H2R-Grounder — CVPR Supplementary</title>
+
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --card-bg: #ffffff;
+    --accent: #2b6cb0;
+    --accent-2: #10b981;
+    --accent-3: #db2777;
+    --accent-4: #f97316;
+    --accent-soft: rgba(43,108,176,0.12);
+    --border-soft: rgba(0,0,0,0.08);
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --shadow-soft: 0 8px 24px rgba(15,23,42,0.08);
+    --shadow-pop: 0 16px 40px rgba(2,6,23,0.12);
+    --maxw: 1180px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+    color: var(--text-main);
+    background:
+      radial-gradient(1000px circle at 8% -10%, #dbeafe 0, transparent 55%),
+      radial-gradient(900px circle at 100% 0%, #dcfce7 0, transparent 45%),
+      radial-gradient(900px circle at 50% 100%, #fff7ed 0, transparent 40%),
+      linear-gradient(180deg, #f8fafc 0%, #ffffff 40%, #f6f7fb 100%);
+  }
+
+  .page-container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 18px 16px 56px;
+  }
+
+  /* ---------- Top nav ---------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+    background: rgba(248,250,252,0.8);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .topbar-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 800; letter-spacing: 0.02em;
+  }
+  .brand-badge {
+    width: 34px; height: 34px; border-radius: 9px;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, #1d4ed8, #22c55e);
+    color: white; font-weight: 900;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4);
+  }
+  nav a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+  }
+  nav a:hover {
+    color: var(--accent);
+    background: rgba(43,108,176,0.08);
+    border-color: rgba(43,108,176,0.2);
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    position: relative;
+    margin-top: 14px;
+    padding: 26px 18px 18px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: "";
+    position: absolute; inset: -80px -40px auto auto;
+    width: 320px; height: 320px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(43,108,176,0.18), transparent 60%);
+    filter: blur(6px);
+    pointer-events: none;
+  }
+  .hero-title {
+    margin: 0 0 6px;
+    font-size: clamp(22px, 3.4vw, 30px);
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+  .hero-title .h2r {
+    background: linear-gradient(90deg, #8b5cf6, #0ea5e9, #10b981);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-sub {
+    margin: 0 0 12px;
+    color: var(--text-muted);
+    font-size: clamp(13px, 2vw, 15px);
+  }
+  .authors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 10px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .authors span {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(15,23,42,0.04);
+    border: 1px solid var(--border-soft);
+  }
+  /* .affils {
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    text-align: center;
+  } */
+  .affils {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  .links {
+    margin-top: 12px;
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12.5px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    color: var(--text-main);
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.05);
+  }
+  .pill:hover { transform: translateY(-1px); box-shadow: var(--shadow-soft); }
+
+  /* ---------- Sections ---------- */
+  section.paper-section {
+    margin-top: 16px;
+    background: rgba(255,255,255,0.98);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+    padding: 16px 18px;
+  }
+  .section-title {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 800;
+    font-size: 16.5px;
+    margin: 2px 0 10px;
+  }
+  .section-title .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  }
+  .section-body {
+    font-size: 14px;
+    color: #0b1220;
+    line-height: 1.6;
+  }
+
+  /* ---------- Method figure ---------- */
+  .method-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .figure-card {
+    border: 1px dashed rgba(43,108,176,0.35);
+    background: linear-gradient(180deg, #f8fbff, #ffffff);
+    border-radius: var(--radius-lg);
+    padding: 10px;
+    box-shadow: inset 0 0 0 1px rgba(43,108,176,0.04);
+  }
+  .figure-card img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    background: #fff;
+  }
+  .figcap {
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+  .method-bullets {
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    padding: 12px 12px;
+  }
+  .method-bullets ul {
+    margin: 6px 0 0 18px;
+    padding: 0;
+  }
+  .method-bullets li {
+    margin: 6px 0;
+    font-size: 13.5px;
+    color: #0b1220;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .method-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Filters + Gallery (yours, but slightly upgraded) ---------- */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 16px auto 14px;
+  }
+  .filters button {
+    border-radius: 999px;
+    border: 1px solid var(--border-soft);
+    background: rgba(255,255,255,0.9);
+    padding: 7px 14px;
+    font-size: 12.5px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-muted);
+    transition: 0.15s ease;
+  }
+  .filters button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(2,6,23,0.06);
+  }
+  .filters button span.dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border-soft);
+  }
+  .filters button.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .filters button[data-filter="ours-dex"] span.dot { background: #16a34a; }
+  .filters button[data-filter="ours-int"] span.dot { background: #22c55e; }
+  .filters button[data-filter="baseline-dex"] span.dot { background: #db2777; }
+  .filters button[data-filter="baseline-int"] span.dot { background: #f97316; }
+  .filters button[data-filter="ours-badcase"] span.dot { background: #0ea5e9; }
+
+  .note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .note.filter-help {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(43,108,176,0.08), rgba(16,185,129,0.08));
+    border: 1px solid rgba(43,108,176,0.25);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .note.filter-help::before {
+    content: "▶";
+    font-size: 11px;
+    opacity: 0.9;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    justify-items: center;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+  .item {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-soft);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 360px;
+    transition: 0.18s ease;
+  }
+  .item:hover { transform: translateY(-2px); box-shadow: var(--shadow-pop); }
+
+  .video-wrapper {
+    position: relative;
+    background: #000;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .video-wrapper.ours-stack {
+    aspect-ratio: 16 / 27;
+    max-height: 520px;
+  }
+  .video-wrapper.baseline-stack {
+    aspect-ratio: 16 / 9;
+    max-height: 360px;
+  }
+  .video-wrapper.single {
+    aspect-ratio: 16 / 9;
+    max-height: 360px;
+  }
+  .video-wrapper video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #000;
+  }
+  .badge {
+    position: absolute;
+    top: 10px; left: 16px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px; font-weight: 700;
+    background: rgba(15,23,42,0.85);
+    color: #f9fafb;
+    z-index: 1;
+  }
+  .badge.secondary {
+    top: 10px; right: 16px; left: auto;
+    background: rgba(15,118,110,0.9);
+  }
+
+  .info { padding: 14px 16px 18px; }
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 8px; margin-bottom: 4px;
+  }
+  .title { font-size: 15.5px; font-weight: 700; }
+  .tag {
+    font-size: 11px; padding: 2px 8px;
+    border-radius: 999px; border: 1px solid var(--border-soft);
+    color: var(--text-muted); white-space: nowrap;
+  }
+  .meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .desc {
+    font-size: 12px;
+    color: var(--text-main);
+    line-height: 1.45;
+  }
+
+  @media (max-width: 1100px) {
+    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 750px) {
+    .gallery { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .item { max-width: 100%; }
+    nav { display: none; }
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 18px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+</style>
+</head>
+
+<body>
+  <!-- Sticky top nav -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">H2R</div>
+        <div>H2R-Grounder</div>
+      </div>
+      <nav>
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#videos">Videos</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="page-container">
+
+    <!-- Hero / Title + Authors -->
+    <header class="hero">
+      <h1 class="hero-title">
+        <span class="h2r">H2R-Grounder</span>:
+        A Paired-Data-Free Paradigm for Translating Human Interaction Videos into Physically Grounded Robot Videos
+      </h1>
+      <!-- <p class="hero-sub">
+        CVPR 2026 Supplementary • Project Page & Qualitative Results
+      </p> -->
+
+      <!-- TODO: Replace with your author list -->
+      <div class="authors">
+        <span>Hai Ci</span>
+        <span>Xiaokang Liu</span>
+        <span>Pei Yang</span>
+        <span>Yiren Song</span>
+        <span>Mike Zheng Shou</span>
+      </div>
+      <!-- TODO: Replace affiliations -->
+      <div class="affils">
+        <div>Show Lab, National University of Singapore</div>
+        <div style="margin-top:4px;">{cihai03,mike.zheng.shou}@gmail.com</div>
+      </div>
+
+      <!-- TODO: Replace links -->
+      <div class="links">
+        <a class="pill" href="#" target="_blank" rel="noopener">📄 Paper (arXiv)</a>
+        <a class="pill" href="https://github.com/showlab/H2R-Grounder" target="_blank" rel="noopener">💻 Code (GitHub)</a>
+        <!-- <a class="pill" href="#" target="_blank" rel="noopener">🗂️ Dataset</a> -->
+        <a class="pill" href="#videos">🎬 Results</a>
+      </div>
+    </header>
+
+    <!-- Abstract -->
+    <section id="abstract" class="paper-section">
+      <div class="section-title"><span class="dot"></span>Abstract</div>
+      <!-- TODO: Replace with your abstract -->
+      <div class="section-body">
+        We present <b>H2R-Grounder</b>, a paired-data-free paradigm that translates third-person human-object interaction videos into
+        frame-aligned robot manipulation videos. H2R-Grounder decomposes interaction videos into a shared representation <b>H2Rep</b> of
+        (i) an abstract pose sequence capturing hand/gripper motion and (ii) a background video encoding scene and object dynamics.
+        Trained solely on unpaired robot videos, our in-context video generation model produces physically grounded robot arms
+        that follow human intent while preserving background consistency and realistic contact dynamics.
+        Extensive experiments on DexYCB and diverse Internet HOI videos demonstrate state-of-the-art motion fidelity and
+        cross-domain generalization without requiring any human-robot paired supervision.
+      </div>
+    </section>
+
+    <!-- Method -->
+    <section id="method" class="paper-section">
+      <div class="section-title"><span class="dot"></span>Method Overview</div>
+
+      <div class="method-grid">
+        <div class="figure-card">
+          <!-- TODO: Put your pipeline/teaser figure here -->
+          <img src="pipeline.png" alt="H2R-Grounder method overview figure">
+          <!-- <div class="figcap">
+            Figure: H2R-Grounder pipeline.
+          </div> -->
+        </div>
+
+        <div class="method-bullets">
+          <div class="section-body" style="font-size:13.8px;">
+            H2R-Grounder bridges human and robot videos through a shared abstract representation:
+          </div>
+          <ul>
+            <li><b>H2Rep extraction:</b> From HOI videos, we estimate hand pose and remove the human; from robot videos,
+              we estimate gripper pose and inpaint the robot arm. Both are converted into a unified abstract pose + background form.</li>
+            <li><b>Paired-data-free training:</b> An in-context video generation model is fine-tuned only on unpaired robot videos to
+              map H2Rep → robot manipulation video.</li>
+            <li><b>Physically grounded synthesis:</b> During inference, the model follows pose dynamics, keeps background/object motion
+              consistent, and inserts a geometrically plausible robot arm.</li>
+          </ul>
+          <div class="section-body" style="font-size:12.8px; color:var(--text-muted); margin-top:8px;">
+            See paper for details on pose indicators, masking, and training objectives.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Videos -->
+    <section id="videos" class="paper-section">
+      <div class="section-title"><span class="dot"></span>Qualitative Video Gallery</div>
+
+      <div class="note filter-help">
+        Use the buttons below to filter the videos by setting.
+      </div>
+
+      <div class="filters">
+        <button class="active" data-filter="all"><span class="dot"></span>All</button>
+        <button data-filter="ours-dex"><span class="dot"></span>Ours (DexYCB)</button>
+        <button data-filter="ours-int"><span class="dot"></span>Ours (Internet)</button>
+        <button data-filter="baseline-dex"><span class="dot"></span>Baselines (DexYCB)</button>
+        <button data-filter="baseline-int"><span class="dot"></span>Baselines (Internet)</button>
+        <button data-filter="ours-badcase"><span class="dot"></span>Badcases</button>
+      </div>
+
+      <!-- Your gallery unchanged below (keep adding items as needed) -->
+      <section class="gallery">
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/0.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/5.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/6.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/7.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/8.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)-Incorrect Pose</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom). The model has certain level of tolerance to the incorrect pose sequence. They can generate appropriate arm motion according to the object motion in H2Rep.
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-dex">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_dexycb/9.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (DexYCB)-Incorrect Pose</div>
+                    <span class="tag">Ours · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom). The model has certain level of tolerance to the incorrect pose sequence. They can generate appropriate arm motion according to the object motion in H2Rep.
+                </div>
+            </figcaption>
+        </figure>
+
+        <!-- 2) Ours (Internet) – stacked 3×1 composite -->
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/0.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/5.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/6.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/7.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/8.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/9.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/10.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/11.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-int">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <!-- 3×1 stacked video (H2Rep, Ours, Human) -->
+                    <source src="ours_internet/12.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Internet)</div>
+                    <span class="tag">Ours · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-badcase">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <source src="ours_badcase/0.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Badcase)</div>
+                    <span class="tag">Ours · Badcase</span>
+                </div>
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).<br>
+                    Artifacts.
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-badcase">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <source src="ours_badcase/1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Badcase)</div>
+                    <span class="tag">Ours · Badcase</span>
+                </div>
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).<br>
+                    Scale issues in open wide scenes.
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-badcase">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <source src="ours_badcase/2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Badcase)</div>
+                    <span class="tag">Ours · Badcase</span>
+                </div>
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).<br>
+                    The issue of precise grasping of thin objects.
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item ours" data-tags="ours ours-badcase">
+            <div class="video-wrapper ours-stack">
+                <video controls preload="metadata">
+                    <source src="ours_badcase/3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Ours</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Ours (Badcase)</div>
+                    <span class="tag">Ours · Badcase</span>
+                </div>
+                <div class="desc">
+                    Human reference (top), H2Rep (middle), Ours (bottom).<br>
+                    Generation instability in first-person scenarios. This could be addressed by fine-tuning on a first-person dataset. Currently, this paper uses third-person dataset (Droid) as the training set.
+                </div>
+            </figcaption>
+        </figure>
+
+        <!-- 3) Baselines (DexYCB) – stacked 2×3 composite -->
+        <figure class="item baseline" data-tags="baseline baseline-dex">
+            <div class="video-wrapper baseline-stack">
+                <video controls preload="metadata">
+                    <!-- 2×3 stacked video (Human, Baseline1–4, Ours) -->
+                    <source src="baselines_dexycb/0.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Baselines</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Baselines (DexYCB)</div>
+                    <span class="tag">Baselines · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
+                <div class="desc">
+                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item baseline" data-tags="baseline baseline-dex">
+            <div class="video-wrapper baseline-stack">
+                <video controls preload="metadata">
+                    <!-- 2×3 stacked video (Human, Baseline1–4, Ours) -->
+                    <source src="baselines_dexycb/1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Baselines</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Baselines (DexYCB)</div>
+                    <span class="tag">Baselines · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
+                <div class="desc">
+                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item baseline" data-tags="baseline baseline-dex">
+            <div class="video-wrapper baseline-stack">
+                <video controls preload="metadata">
+                    <!-- 2×3 stacked video (Human, Baseline1–4, Ours) -->
+                    <source src="baselines_dexycb/2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">DexYCB</div>
+                <div class="badge secondary">Baselines</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Baselines (DexYCB)</div>
+                    <span class="tag">Baselines · DexYCB</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
+                <div class="desc">
+                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
+                </div>
+            </figcaption>
+        </figure>
+
+        <!-- 4) Baselines (Internet) – stacked 2×3 composite -->
+        <figure class="item baseline" data-tags="baseline baseline-int">
+            <div class="video-wrapper baseline-stack">
+                <video controls preload="metadata">
+                    <!-- 2×3 stacked video (Human, Baseline1–4, Ours) -->
+                    <source src="baselines_internet/2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Baselines</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Baselines (Internet)</div>
+                    <span class="tag">Baselines · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
+                <div class="desc">
+                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item baseline" data-tags="baseline baseline-int">
+            <div class="video-wrapper baseline-stack">
+                <video controls preload="metadata">
+                    <!-- 2×3 stacked video (Human, Baseline1–4, Ours) -->
+                    <source src="baselines_internet/3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Baselines</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Baselines (Internet)</div>
+                    <span class="tag">Baselines · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
+                <div class="desc">
+                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
+                </div>
+            </figcaption>
+        </figure>
+
+        <figure class="item baseline" data-tags="baseline baseline-int">
+            <div class="video-wrapper baseline-stack">
+                <video controls preload="metadata">
+                    <!-- 2×3 stacked video (Human, Baseline1–4, Ours) -->
+                    <source src="baselines_internet/4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="badge">Internet</div>
+                <div class="badge secondary">Baselines</div>
+            </div>
+            <figcaption class="info">
+                <div class="title-row">
+                    <div class="title">Baselines (Internet)</div>
+                    <span class="tag">Baselines · Internet</span>
+                </div>
+                <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
+                <div class="desc">
+                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
+                </div>
+            </figcaption>
+        </figure>
+        
+      </section>
+    </section>
+
+    <footer>
+      © 2026 H2R-Grounder authors • CVPR Supplementary Page
+    </footer>
+  </div>
+
+<script>
+(function() {
+  const filterButtons = document.querySelectorAll(".filters button");
+  const items = document.querySelectorAll(".gallery .item");
+
+  function applyFilter(filter) {
+    items.forEach(item => {
+      if (filter === "all") {
+        item.style.display = "";
+        return;
+      }
+      const tags = (item.getAttribute("data-tags") || "").split(/\s+/);
+      item.style.display = tags.includes(filter) ? "" : "none";
+    });
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const filter = btn.getAttribute("data-filter");
+      filterButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      applyFilter(filter);
+
+      // Smoothly keep gallery in view after filter on mobile
+      const videosSection = document.querySelector("#videos");
+      if (videosSection) videosSection.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
