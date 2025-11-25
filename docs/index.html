@@ -310,27 +310,43 @@
     opacity: 0.9;
   }
 
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-    justify-items: center;
-    align-items: flex-start;
-    margin-top: 10px;
-  }
-  .item {
-    background: var(--card-bg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-soft);
-    border: 1px solid var(--border-soft);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 360px;
-    transition: 0.18s ease;
-  }
-  .item:hover { transform: translateY(-2px); box-shadow: var(--shadow-pop); }
+  /* Main gallery: ours / internet / badcases – 3 per row on desktop */
+    .gallery-main {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        justify-items: center;
+        align-items: flex-start;
+        margin-top: 10px;
+    }
+
+    /* Baseline gallery: 2 per row, larger cards */
+    .gallery-baseline {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        justify-items: center;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+
+    /* Shared item styling stays the same */
+    .item {
+        background: var(--card-bg);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-soft);
+        border: 1px solid var(--border-soft);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 360px;
+        transition: 0.18s ease;
+    }
+    .item:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-pop);
+    }
 
   .video-wrapper {
     position: relative;
@@ -415,14 +431,26 @@
     line-height: 1.45;
   }
 
-  @media (max-width: 1100px) {
-    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  @media (max-width: 750px) {
-    .gallery { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-    .item { max-width: 100%; }
-    nav { display: none; }
-  }
+  /* Responsive behavior */
+    @media (max-width: 1100px) {
+        .gallery-main {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .gallery-baseline {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 750px) {
+        .gallery-main,
+        .gallery-baseline {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+        .item {
+            max-width: 100%;
+        }
+    }
+
 
   /* ---------- Footer ---------- */
   footer {
@@ -431,6 +459,18 @@
     color: var(--text-muted);
     font-size: 12px;
   }
+
+  /* Override, make baseline comparison cards larger in their 2-column grid */
+  .gallery-baseline .item {
+    max-width: none;   /* remove 360px cap */
+    width: 100%;       /* fill the whole column */
+  }
+
+    /* Optionally give the baseline videos a bit more vertical room */
+  .gallery-baseline .video-wrapper.baseline-stack {
+    max-height: 480px;   /* tweak as you like: 420–520 works well */
+  }
+
 </style>
 </head>
 
@@ -552,7 +592,7 @@
       </div>
 
       <!-- Your gallery unchanged below (keep adding items as needed) -->
-      <section class="gallery">
+      <section class="gallery gallery-main">
         <figure class="item ours" data-tags="ours ours-dex">
             <div class="video-wrapper ours-stack">
                 <video controls preload="metadata">
@@ -1224,8 +1264,10 @@
                 </div>
             </figcaption>
         </figure>
+      </section>
 
         <!-- 3) Baselines (DexYCB) – stacked 2×3 composite -->
+      <section class="gallery gallery-baseline">
         <figure class="item baseline" data-tags="baseline baseline-dex">
             <div class="video-wrapper baseline-stack">
                 <video controls preload="metadata">
