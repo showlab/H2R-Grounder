@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>H2R-Grounder — CVPR Supplementary</title>
+<title>H2R-Grounder</title>
 
 <style>
   :root {
@@ -372,6 +372,27 @@
     background: rgba(15,118,110,0.9);
   }
 
+  /* Badges for each sub-video in the 3×1 vertical stack */
+  .stack-badge {
+    position: absolute;
+    right: 16px;           /* upper-right corner */
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(15,118,110,0.9); /* same as .badge.secondary */
+    color: #f9fafb;
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+
+  /* One badge per third */
+  .stack-badge.top    { top: 10px; }
+  .stack-badge.middle { top: calc(33.333% + 10px); }
+  .stack-badge.bottom { top: calc(66.666% + 10px); }
+
+
   .info { padding: 14px 16px 18px; }
   .title-row {
     display: flex; justify-content: space-between; align-items: baseline;
@@ -539,18 +560,21 @@
                     <source src="ours_dexycb/0.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -561,18 +585,21 @@
                     <source src="ours_dexycb/1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -583,18 +610,21 @@
                     <source src="ours_dexycb/2.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -605,18 +635,21 @@
                     <source src="ours_dexycb/3.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -627,18 +660,21 @@
                     <source src="ours_dexycb/4.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -649,18 +685,21 @@
                     <source src="ours_dexycb/5.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -671,18 +710,21 @@
                     <source src="ours_dexycb/6.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -693,18 +735,21 @@
                     <source src="ours_dexycb/7.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -715,17 +760,20 @@
                     <source src="ours_dexycb/8.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)-Incorrect Pose</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
                 <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom). The model has certain level of tolerance to the incorrect pose sequence. They can generate appropriate arm motion according to the object motion in H2Rep.
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom). The model has certain level of tolerance to the incorrect pose sequence. They can generate appropriate arm motion according to the object motion in H2Rep.
                 </div>
             </figcaption>
         </figure>
@@ -737,17 +785,20 @@
                     <source src="ours_dexycb/9.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">DexYCB</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (DexYCB)-Incorrect Pose</div>
                     <span class="tag">Ours · DexYCB</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
                 <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom). The model has certain level of tolerance to the incorrect pose sequence. They can generate appropriate arm motion according to the object motion in H2Rep.
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom). The model has certain level of tolerance to the incorrect pose sequence. They can generate appropriate arm motion according to the object motion in H2Rep.
                 </div>
             </figcaption>
         </figure>
@@ -760,18 +811,21 @@
                     <source src="ours_internet/0.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -782,18 +836,21 @@
                     <source src="ours_internet/1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -804,18 +861,21 @@
                     <source src="ours_internet/2.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -826,18 +886,21 @@
                     <source src="ours_internet/3.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -848,18 +911,21 @@
                     <source src="ours_internet/4.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -870,18 +936,21 @@
                     <source src="ours_internet/5.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -892,18 +961,21 @@
                     <source src="ours_internet/6.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -914,18 +986,21 @@
                     <source src="ours_internet/7.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -936,18 +1011,21 @@
                     <source src="ours_internet/8.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -958,18 +1036,21 @@
                     <source src="ours_internet/9.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -980,18 +1061,21 @@
                     <source src="ours_internet/10.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -1002,18 +1086,21 @@
                     <source src="ours_internet/11.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -1024,18 +1111,21 @@
                     <source src="ours_internet/12.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
                     <div class="title">Ours (Internet)</div>
                     <span class="tag">Ours · Internet</span>
                 </div>
-                <!-- <div class="meta">Single stacked video: Human reference (top), H2Rep (middle), Ours (bottom).</div> -->
-                <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).
-                </div>
+                <!-- <div class="meta">Single stacked video: Human Video (input) (top), H2Rep (middle), Ours (bottom).</div> -->
+                <!-- <div class="desc">
+                    Human Video (input) (top), H2Rep (middle), Ours (bottom).
+                </div> -->
             </figcaption>
         </figure>
 
@@ -1045,8 +1135,11 @@
                     <source src="ours_badcase/0.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
@@ -1054,7 +1147,7 @@
                     <span class="tag">Ours · Badcase</span>
                 </div>
                 <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).<br>
+                    <!-- Human Video (input) (top), H2Rep (middle), Ours (bottom).<br> -->
                     Artifacts.
                 </div>
             </figcaption>
@@ -1066,8 +1159,11 @@
                     <source src="ours_badcase/1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
@@ -1075,7 +1171,7 @@
                     <span class="tag">Ours · Badcase</span>
                 </div>
                 <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).<br>
+                    <!-- Human Video (input) (top), H2Rep (middle), Ours (bottom).<br> -->
                     Scale issues in open wide scenes.
                 </div>
             </figcaption>
@@ -1087,8 +1183,11 @@
                     <source src="ours_badcase/2.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
@@ -1096,7 +1195,7 @@
                     <span class="tag">Ours · Badcase</span>
                 </div>
                 <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).<br>
+                    <!-- Human Video (input) (top), H2Rep (middle), Ours (bottom).<br> -->
                     The issue of precise grasping of thin objects.
                 </div>
             </figcaption>
@@ -1108,8 +1207,11 @@
                     <source src="ours_badcase/3.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
-                <div class="badge secondary">Ours</div>
+                <!-- <div class="badge">Internet</div>
+                <div class="badge secondary">Robot Video (ours)</div> -->
+                <div class="stack-badge top">Human Video (input)</div>
+                <div class="stack-badge middle">H2Rep (ours pose)</div>
+                <div class="stack-badge bottom">Robot Video (ours)</div>
             </div>
             <figcaption class="info">
                 <div class="title-row">
@@ -1117,7 +1219,7 @@
                     <span class="tag">Ours · Badcase</span>
                 </div>
                 <div class="desc">
-                    Human reference (top), H2Rep (middle), Ours (bottom).<br>
+                    <!-- Human Video (input) (top), H2Rep (middle), Ours (bottom).<br> -->
                     Generation instability in first-person scenarios. This could be addressed by fine-tuning on a first-person dataset. Currently, this paper uses third-person dataset (Droid) as the training set.
                 </div>
             </figcaption>
@@ -1131,7 +1233,7 @@
                     <source src="baselines_dexycb/0.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
+                <!-- <div class="badge">DexYCB</div> -->
                 <div class="badge secondary">Baselines</div>
             </div>
             <figcaption class="info">
@@ -1140,9 +1242,9 @@
                     <span class="tag">Baselines · DexYCB</span>
                 </div>
                 <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
-                <div class="desc">
-                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
-                </div>
+                <!-- <div class="desc">
+                    Order: Human Video. Ours. Kling. Runway Aleph. Robomaster.
+                </div> -->
             </figcaption>
         </figure>
 
@@ -1153,7 +1255,7 @@
                     <source src="baselines_dexycb/1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
+                <!-- <div class="badge">DexYCB</div> -->
                 <div class="badge secondary">Baselines</div>
             </div>
             <figcaption class="info">
@@ -1162,9 +1264,9 @@
                     <span class="tag">Baselines · DexYCB</span>
                 </div>
                 <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
-                <div class="desc">
-                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
-                </div>
+                <!-- <div class="desc">
+                    Order: Human Video (input). Ours. Kling. Runway Aleph. Robomaster.
+                </div> -->
             </figcaption>
         </figure>
 
@@ -1175,7 +1277,7 @@
                     <source src="baselines_dexycb/2.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">DexYCB</div>
+                <!-- <div class="badge">DexYCB</div> -->
                 <div class="badge secondary">Baselines</div>
             </div>
             <figcaption class="info">
@@ -1184,9 +1286,9 @@
                     <span class="tag">Baselines · DexYCB</span>
                 </div>
                 <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
-                <div class="desc">
-                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
-                </div>
+                <!-- <div class="desc">
+                    Order: Human Video (input). Ours. Kling. Runway Aleph. Robomaster.
+                </div> -->
             </figcaption>
         </figure>
 
@@ -1198,7 +1300,7 @@
                     <source src="baselines_internet/2.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
+                <!-- <div class="badge">Internet</div> -->
                 <div class="badge secondary">Baselines</div>
             </div>
             <figcaption class="info">
@@ -1207,9 +1309,9 @@
                     <span class="tag">Baselines · Internet</span>
                 </div>
                 <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
-                <div class="desc">
-                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
-                </div>
+                <!-- <div class="desc">
+                    Order: Human Video (input). Ours. Kling. Runway Aleph. Robomaster.
+                </div> -->
             </figcaption>
         </figure>
 
@@ -1220,7 +1322,7 @@
                     <source src="baselines_internet/3.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
+                <!-- <div class="badge">Internet</div> -->
                 <div class="badge secondary">Baselines</div>
             </div>
             <figcaption class="info">
@@ -1229,9 +1331,9 @@
                     <span class="tag">Baselines · Internet</span>
                 </div>
                 <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
-                <div class="desc">
-                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
-                </div>
+                <!-- <div class="desc">
+                    Order: Human Video (input). Ours. Kling. Runway Aleph. Robomaster.
+                </div> -->
             </figcaption>
         </figure>
 
@@ -1242,7 +1344,7 @@
                     <source src="baselines_internet/4.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="badge">Internet</div>
+                <!-- <div class="badge">Internet</div> -->
                 <div class="badge secondary">Baselines</div>
             </div>
             <figcaption class="info">
@@ -1251,9 +1353,9 @@
                     <span class="tag">Baselines · Internet</span>
                 </div>
                 <!-- <div class="meta">Single stacked video: Human + 4 baselines + Ours in a 2×3 grid.</div> -->
-                <div class="desc">
-                    Order: Human Reference. Ours. Kling. Runway Aleph. Robomaster.
-                </div>
+                <!-- <div class="desc">
+                    Order: Human Video (input). Ours. Kling. Runway Aleph. Robomaster.
+                </div> -->
             </figcaption>
         </figure>
         
