@@ -4,7 +4,7 @@
 **Show Lab, National University of Singapore**  
 *Corresponding author
 
-📄 **Paper (arXiv):** [https://arxiv.org/abs/2512.09406](https://arxiv.org/abs/2512.09406)
+📄 **Paper (arXiv):** [https://arxiv.org/abs/2512.09406](https://arxiv.org/abs/2512.09406)  
 🌐 **Project Page:** [https://showlab.github.io/H2R-Grounder/](https://showlab.github.io/H2R-Grounder/)
 
 ---
