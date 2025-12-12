@@ -46,7 +46,7 @@ Code and models will be released soon.
 @article{ci2025h2rgrounder,
   title={H2R-Grounder: A Paired-Data-Free Paradigm for Translating Human Interaction Videos into Physically Grounded Robot Videos},
   author={Ci, Hai and Liu, Xiaokang and Yang, Pei and Song, Yiren and Shou, Mike Zheng},
-  journal={arXiv preprint arXiv:XXXXX},
+  journal={arXiv preprint arXiv:2512.09406},
   year={2025}
 }
 ```
